@@ -1,0 +1,6 @@
+opencv-python
+pyttsx3
+SpeechRecognition
+Pillow
+google-genai
+python-dotenv
