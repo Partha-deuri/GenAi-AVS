@@ -3,7 +3,9 @@
 A real-time, voice-activated AI assistant designed specifically to help visually impaired individuals understand their surroundings. The system uses a webcam to capture the environment and leverages the lightning-fast **Google Gemini Vision API** to describe scenes and answer user questions audibly.
 
 ## Features
-- **Real-Time Scene Description:** Instantly get a brief, audible description of the room and immediate obstacles.
+- **Continuous Hazard Detection (YOLO):** A local, ultra-fast YOLO nano model constantly scans for immediate physical hazards (people, cars, bicycles, etc.) and warns you instantly.
+- **Smart Cooldown System:** Hazard warnings have a customizable cooldown (default 20 seconds) to prevent repetitive audio spam.
+- **Real-Time Scene Description:** Instantly get a brief, audible description of the room via Gemini.
 - **Voice Question Answering (VQA):** Ask specific questions about what the camera sees (e.g., "Is there a person in front of me?", "What color is the cup on the table?").
 - **Hands-Free Wake Word:** Continuously listens in the background. Simply say **"assistant"** or **"vision"** to activate the system without touching the keyboard.
 - **Lightning Fast:** Powered by `gemini-3.5-flash-lite`, generating intelligent, conversational responses in seconds.
@@ -49,14 +51,17 @@ python main.py
 | **Wake Word** | Say `"assistant"` or `"vision"` | Activates the Voice Question Answering mode hands-free. Wait for the system to say "Yes?", then ask your question. |
 | **Voice Query** | Press `V` | Same as the Wake Word. Turns on the mic to listen to your question about the current scene. |
 | **Describe Scene** | Press `SPACE` | Instantly takes a picture and provides a general description of the immediate environment and obstacles. |
+| **Toggle Hazards** | Press `T` | Turns the continuous YOLO hazard warnings ON or OFF. Useful for crowded areas. |
+| **Adjust Cooldown** | Press `+` or `-` | Increases or decreases the delay between repeated hazard warnings. |
 | **Exit** | Press `ESC` | Closes the camera and exits the program. |
 
 ## Architecture
 - `app/camera.py`: Manages webcam initialization and image formatting.
 - `app/audio.py`: Manages local Speech-to-Text and Text-to-Speech interactions, including background wake word monitoring.
+- `app/detector.py`: Runs a lightweight YOLO model to silently identify physical hazards in the background.
 - `app/vision.py`: Connects to the Google Gemini Vision API to process images and user prompts.
 - `app/core.py`: The central controller that manages state and multi-threaded tasks between components.
 - `main.py`: The application entry point.
 
 ---
-*Built with Python, OpenCV, SpeechRecognition, pyttsx3, and Google GenAI.*
+*Built with Python, OpenCV, SpeechRecognition, pyttsx3, Ultralytics (YOLO), and Google GenAI.*

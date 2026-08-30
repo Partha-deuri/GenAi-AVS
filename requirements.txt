@@ -4,3 +4,4 @@ SpeechRecognition
 Pillow
 google-genai
 python-dotenv
+ultralytics
