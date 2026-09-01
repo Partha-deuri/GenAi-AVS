@@ -21,7 +21,7 @@ A real-time, voice-activated AI assistant designed specifically to help visually
 
 1. **Clone the repository (or download the folder):**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/parthdeuri/GenAi-AVS.git
    cd GenAi-AVS
    ```
 
